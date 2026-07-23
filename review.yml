@@ -1,0 +1,77 @@
+aid: home-trust
+name: Home Trust
+review:
+  question: Does Home Trust Company expose a public first-party developer portal or API?
+  answer: false
+  date: '2026-07-23'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Home Trust Company (the principal operating subsidiary of Home Capital
+    Group, taken private by Smith Financial Corporation in 2023) publishes no
+    public developer portal and no first-party API. It is a federally regulated
+    Canadian trust company and alternative (non-prime) lender whose group now
+    includes Home Bank (a Schedule I bank), Fairstone Bank, and the Oaken
+    Financial deposit brand. Direct probes on 2026-07-23 found no developer or
+    API host, no downloadable OpenAPI/Swagger specification, and no documented
+    Interac or Payments Canada Real-Time Rail (RTR) API surface. Canada's
+    Consumer-Driven Banking framework is legislated but not yet operational, and
+    Home Trust publishes no stated CDB or FDX position. There is no OAuth2/OIDC,
+    API-key, or mTLS-secured public API to authenticate against because no
+    public API is documented. Consistent with most Canadian alternative lenders,
+    consumer financial-data access today would occur via screen-scraping
+    aggregators (e.g., Flinks, Plaid), not a first-party API.
+  postureFlags:
+    firstPartyDeveloperPortal: false
+    downloadableSpec: false
+    fdxParticipant: false
+    consumerDrivenBankingPosition: none
+    interacOrRtrApi: false
+    aggregatorAccessLikely: true
+    authModel: none-public
+    specProvenance: none
+  probes:
+    - url: https://developer.hometrust.ca
+      result: DNS NXDOMAIN (does not resolve)
+      httpStatus: 000
+    - url: https://api.hometrust.ca
+      result: DNS NXDOMAIN (does not resolve)
+      httpStatus: 000
+    - url: https://www.hometrust.ca
+      result: Corporate marketing site; no developer or API references
+      httpStatus: 200
+    - url: https://www.hometrust.ca/blog/
+      result: Corporate blog reachable
+      httpStatus: 200
+    - url: https://www.hometrust.ca/privacy/
+      result: Privacy policy reachable
+      httpStatus: 200
+    - url: https://www.hometrust.ca/disclaimer/
+      result: Legal terms / disclaimer reachable
+      httpStatus: 200
+  transports:
+    - protocol: REST
+      documented: false
+      note: No public REST API is documented.
+    - protocol: SSE
+      documented: false
+    - protocol: WebSocket
+      documented: false
+sources:
+  - url: https://www.hometrust.ca
+    type: Website
+    note: Corporate site; products (mortgages, reverse mortgages, Visa credit cards, Oaken deposits); post-merger alternative-lender positioning. No developer/API content.
+  - url: https://en.wikipedia.org/wiki/Home_Capital_Group
+    type: Reference
+    note: Home Capital Group ownership history; Smith Financial Corporation take-private (2023); Home Trust as principal subsidiary.
+  - url: https://ca.linkedin.com/company/hometrustco
+    type: LinkedIn
+    note: Company profile.
+actions:
+  apisYmlUpdated: true
+  openapiHarvested: false
+  reason: |
+    No public API or developer portal exists to harvest. An honest
+    identity-only (built-stub) record was produced: apis[] is empty, and only
+    verified corporate links (Website, Blog, LinkedIn, Privacy, Terms) were
+    recorded. No specification, host, or endpoint was invented.
