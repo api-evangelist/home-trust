@@ -23,6 +23,15 @@ description: >-
   identity-only record: no public API exists as of July 2026.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
+- Financial-Services
+- Banking
+- Canada
+- Trust Company
+- Alternative Lending
+- Mortgages
+- Credit Cards
+- Deposits
+tags_raw:
 - Financial Services
 - Banking
 - Canada
