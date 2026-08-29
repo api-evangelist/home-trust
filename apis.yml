@@ -1,5 +1,8 @@
 aid: home-trust
 url: https://raw.githubusercontent.com/api-evangelist/home-trust/refs/heads/main/apis.yml
+x-api-posture: no-product-api
+x-api-posture-basis: observed
+x-api-posture-note: "This is an identity-only record: no public API exists as of July 2026."
 name: Home Trust
 kind: company
 description: >-
